@@ -47,3 +47,30 @@ const person2 = {
   }
 };
 
+## Inheritance (Video 12)
+Let's imagine that we create a teacher class and this class have same properties in person class. We have to inherit from properties of person to teacher like this.
+```javascript
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  walk() {
+  console.log("walk");
+  }
+}
+class Teacher extends Person{
+  // Teachers have name bacuse of they are person too
+  // But all persons do not have degree
+  constructor(name, degree) {
+    super(name);
+    this.degree = degree;
+  }
+  // Imagine that just teachers have teach property
+  teach() {
+  console.log("teach");
+  }
+}
+
+const teacher = new Teacher("Onur Can", "MSc");
+teacher.teach();
+
