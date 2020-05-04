@@ -18,3 +18,32 @@ const second = { surname: "Avci" }
 const combined = { ...first, ...second, location: "Giresun" }
 ```
 ## Classes (Video 11)
+If we want to create more than one person, 
+we should write codes like this
+```javascript
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  walk() {
+  console.log("walk");
+  }
+}
+const person1 = new Person("Onur Can");
+const person1 = new Person("Batuhan");
+```
+instead of writing like this
+```javascript
+const person1 = {
+  name: "Onur Can",
+  walk() {
+    console.log("walk");
+  }
+};
+const person2 = {
+  name: "Batuhan",
+  walk() {
+    console.log("walk");
+  }
+};
+
