@@ -1,8 +1,8 @@
-# React Course with Mosh
-
+# ES6 Refresher
 ---
 
-## Spread (ES6 Refresher Video10)
+## Spread (Video 10)
+
 ```javascript
 const first = [1,2,3]
 const second = [4,5,6]
@@ -18,6 +18,7 @@ const second = { surname: "Avci" }
 const combined = { ...first, ...second, location: "Giresun" }
 ```
 ## Classes (Video 11)
+
 If we want to create more than one person, 
 we should write codes like this
 ```javascript
