@@ -85,5 +85,30 @@ const person = new Person("Burak");
 teacher.teach();
 person.walk();
 ```
+## Named and Default Exports (Video 14)
+If we only have an object in a file, we exports as a default exports like this;
+```javascript
+import { Person } from "./person";
 
+// Exports a function 
+export function promote(){}
+
+// We have just an object 
+export default class Teacher extends Person{
+  constructor(name, degree) {
+    super(name);
+    this.degree = degree;
+  }
+  teach() {
+  console.log("teach");
+  }
+}
+```
+and we imports default exports like this
+```javascript
+import Teacher, { promote } from "./teacher";
+
+const teacher = new Teacher("Onur Can", "MSc");
+teacher.teach();
+```
 
