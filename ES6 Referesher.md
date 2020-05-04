@@ -74,3 +74,16 @@ class Teacher extends Person{
 const teacher = new Teacher("Onur Can", "MSc");
 teacher.teach();
 ```
+## Modules (Video 13)
+A class can be in different files, and we need to call in a file 
+```javascript
+import { Teacher } from "./teacher";
+import { Person } from "./person";
+
+const teacher = new Teacher("Onur Can", "MSc");
+const person = new Person("Burak");
+teacher.teach();
+person.walk();
+```
+
+
