@@ -46,7 +46,7 @@ const person2 = {
     console.log("walk");
   }
 };
-
+```
 ## Inheritance (Video 12)
 Let's imagine that we create a teacher class and this class have same properties in person class. We have to inherit from properties of person to teacher like this.
 ```javascript
@@ -73,4 +73,4 @@ class Teacher extends Person{
 
 const teacher = new Teacher("Onur Can", "MSc");
 teacher.teach();
-
+```
