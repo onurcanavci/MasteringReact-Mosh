@@ -1,3 +1,3 @@
-# Mastering React Course by Mosh
+# React and Javascript Notes
 
-The notes I took in the Mastering React course by Mosh Hamedani 
+The notes I took in the Youtube videos and Mastering React course by Mosh Hamedani 
