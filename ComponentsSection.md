@@ -2,87 +2,96 @@
 ---
 ## Rendering Classes Dynamically (Video 7)
 
+Table Component
 ```javascript
-class Counter extends Component {
-  state = {
-    count: 0
-   };
-   
-   render() {
-    return(
-      <div>
-        // if count equals to zero, className equals to "badge m-2 badge-warning"
-        // otherwise "badge m-2 badge-primary"
-        <span> className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
-      </div>
-    );
-}
+import React from 'react';
 
-getBadgeClasses() {
-  let classes = "badge m-2 badge-";
-  classes += this.state.count === 0 ? "warning" : "primary";
-  return classes;
-}
-
-formatCount() {
-  const { count } = this.state;
-  return count === 0 ? <h1>Zero</h1> : count;
-}
-
-
-```
- ## Rendering Lists (Video 8)
-```javascript
-class Counter extends Component {
-  state = {
-    count: 0,
-    tags: ["tag1", "tag2", "tag3"]
-   };
-   
-   render() {
-    return(
-      <div>
-        <span> className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
-        <ul>{this.state.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
-      </div>
-    );
-}
-
-getBadgeClasses() {
-  let classes = "badge m-2 badge-";
-  classes += this.state.count === 0 ? "warning" : "primary";
-  return classes;
-}
-
-formatCount() {
-  const { count } = this.state;
-  return count === 0 ? <h1>Zero</h1> : count;
+export default function CoinTable(props) {
+  return(
+    <table>
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>
+          <button
+            onClick={()=> props.sortBy('price_usd')}
+          >
+            Price
+          </button>
+        </th>
+      </thead>
+      <tbody>
+        {
+          props.data.map(row=> (
+            <tr>
+              <td>{row.rank}</td>
+              <td>{row.name}</td>
+              <td>{row.symbol}</td>
+              <td>{row.price_usd}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  )
 }
 ```
 
-  ## Conditional Rendering (Video 9)
+App containers
+
 ```javascript
-class Counter extends Component {
-  state = {
-    count: 0,
-    tags: ["tag1", "tag2", "tag3"]
-   };
-   
-   renderTags() {
-     if(this.state.tags.length === 0) return <p> There are no tags!</p>
-    
-     return <ul>{this.state.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>;
-   }
-   render() {
+import React from 'react';
+import CoinTable from './components/coin-table';
+
+import data from './data/coins.json';
+
+class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      data: data,
+      direction: {
+        price_usd: 'asc',
+      }
+    }
+    this.sortBy = this.sortBy.bind(this);
+  }
+  
+  sortBy(key){
+    this.setState({
+      data: data.sort((a,b)=>(
+        this.state.direction[key] ==='asc'
+          ? parseFloat(a[key]) - parseFloat(b[key])
+          : parseFloat(b[key]) - parseFloat(a[key])
+      )),
+      direction: {
+        [key]: this.state.direction[key] === 'asc'
+          ? 'desc'
+          : 'asc'
+      }
+    })
+  }
+  
+  render() {
     return(
-      <div>
-        {this.state.tags.length === 0 && "Please create a new tag!"}
-        {this.renderTags()}
+      <div
+        className="page-container"
+      >
+        <CoinTable 
+          data={this.state.data}
+          sortBy={this.sortBy}
+        />
       </div>
-    );
+    )
+  }
+  
 }
 
+export default App;
+
+
 ```
+
+
 
